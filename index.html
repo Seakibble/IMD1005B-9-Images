@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class 9 - Images</title>
+
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <!-- We want to display high-resolution images if the page is very wide, and lower resolution images if the page is narrow. This saves data because we can serve smaller files without losing any quality. -->
+    <!-- Naive approach to serving images - showing and hiding them with CSS and media queries. -->
+    <!-- This doesn't actually work because the page is still loading the images, we're just choosing whether or not to display them. -->
+    <!-- A real solution should prevent the images from being loaded in the first place if they're not needed. -->
+        
+    <!-- <img class="big" src="images/mountain.jpg" alt="Mountain">
+    <img class='small' src="images/mountain-small.jpg" alt="Mountain"> -->
+
+    <!-- Displaying images at different screen widths -->
+    <img 
+        srcset="images/mountain-small.jpg 634w, 
+                images/mountain.jpg 1920w"
+        sizes="(max-width: 634px) 634px,
+               (max-width: 1920px) 1920px"
+
+        src="images/mountain.jpg" 
+        alt="Mountain">
+
+
+    <!-- Displaying images for different screen pixel densities (i.e. phones vs desktop vs 4k monitors) -->
+    <img 
+        srcset="images/mountain-small.jpg, 
+                images/mountain.jpg 2x"
+        src="images/mountain.jpg" 
+        alt="Mountain">
+
+    <!-- Displaying images both at different screen widths *and* different pixel densities -->
+    <picture>
+        <source srcset="images/goat-400x.jpg,
+                        images/goat-800x.jpg 2x,
+                        images/goat-1200x.jpg 3x"
+                media="(max-width: 400px)">
+
+        <source srcset="images/goat-800x.jpg,
+                        images/goat-1600x.jpg 2x,
+                        images/goat-2400x.jpg 3x"
+                media="(max-width: 800px)">
+
+        <source srcset="images/goat-1200x.jpg,
+                        images/goat-2400x.jpg 2x,
+                        images/goat-3600x.jpg 3x"
+                media="(max-width: 1200px)">
+
+        <!-- I recommend using unique placeholder images to test because you'll immediately see if the right image is loading or not. -->
+        <!-- <source srcset="https://dummyimage.com/400x400/000/fff,
+                        https://dummyimage.com/800x800/000/fff 2x,
+                        https://dummyimage.com/1200x1200/000/fff 3x"
+                media="(max-width: 400px)">
+
+        <source srcset="https://dummyimage.com/800x800/000/f00,
+                        https://dummyimage.com/1600x1600/000/f00 2x,
+                        https://dummyimage.com/2400x2400/000/f00 3x"
+                media="(max-width: 800px)">
+                
+        <source srcset="https://dummyimage.com/1200x1200/000/0f0,
+                        https://dummyimage.com/2400x2400/000/0f0 2x,
+                        https://dummyimage.com/3600x3600/000/0f0 3x"
+                media="(max-width: 1200px)"> -->
+
+        <!-- Fallback in the img tag is used if no source is applicable. -->
+        <img src="images/goat.jpg" alt="Goat">
+    </picture>
+</body>
+</html>
